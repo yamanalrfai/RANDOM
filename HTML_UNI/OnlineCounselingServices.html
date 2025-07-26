@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Online Counseling Services</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="first.css">
+    <style>
+        .bottom{
+            background-color: #2b6cb0;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            text-align:center; 
+            font-family: Garamond, serif;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand logo" href="ape.html">AUTISM PARENT EDUCATION</a>
+            <p id="clock"></p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="ape.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="OnlineCounselingServices.html">Contact</a>
+                    <a class="nav-link" href="About_us.html">About</a>
+                    <a class="nav-link" href="resources.html">Resources</a>
+                    <a class="nav-link" href="success.html">Success stories</a>
+                    <a class="nav-link" href="SelfHelp.html">Tools and activities</a>
+                    <a class="nav-link" href="EmergencyContact.html">Emergency Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center mb-3">Booking</h1>
+        <p class="text-center mb-4">Book an appointment with a therapist or counselor.</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form onsubmit="return valid()">
+                    <div class="mb-3">
+                        <label for="name" class="form-label fw-bold">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"><span id="nameError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email"><span id="emailError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label fw-bold">Preferred Date:</label>
+                        <input type="date" class="form-control" id="date" name="date"><span id="dateError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="therapist" class="form-label fw-bold">Select Therapist:</label>
+                        <select class="form-select" id="therapist" name="therapist">
+                            <option value="">Choose...</option>
+                            <option value="therapist1">Therapist 1</option>
+                            <option value="therapist2">Therapist 2</option>
+                            <option value="therapist3">Therapist 3</option>
+                        </select><span id="therapistError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time" class="form-label fw-bold">Preferred Time:</label>
+                        <input type="time" class="form-control" id="time" name="time"><span id="timeError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label fw-bold">Message:</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write a message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Book Appointment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+      <h3>Contact Us</h3>
+      <p>Email: ape.khalil.yaman.yousef@gmail.com | Phone: 079 6265 5557 - 079 3223 4332</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function valid() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var date = document.getElementById("date").value;
+            var therapist = document.getElementById("therapist").value;
+            var time = document.getElementById("time").value;
+            var message = document.getElementById("message").value;
+            var valid = true;
+            if (name == "" || name == null) {
+                document.getElementById("nameError").innerHTML = "Please enter your name.";
+                valid = false;
+            } else {
+                document.getElementById("nameError").innerHTML = "";
+            }
+            if (email == "" || email == null) {
+                document.getElementById("emailError").innerHTML = "Please enter your email.";
+                valid = false;
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+            if (date == "" || date == null) {
+                document.getElementById("dateError").innerHTML = "Please select a date.";
+                valid = false;
+            } else {
+                document.getElementById("dateError").innerHTML = "";
+            }
+            if (therapist == "" || therapist == null) {
+                document.getElementById("therapistError").innerHTML = "Please select a therapist.";
+                valid = false;
+            } else {
+                document.getElementById("therapistError").innerHTML = "";
+            }
+            if (time == "" || time == null) {
+                document.getElementById("timeError").innerHTML = "Please select a time.";
+                valid = false;
+            } else {
+                document.getElementById("timeError").innerHTML = "";
+            }
+            return valid;
+        }
+        var t = setInterval(gettime, 1000);
+        function gettime()
+        {
+            const d = new Date();
+            document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+        }
+    </script>
+</body>
+
+</html>

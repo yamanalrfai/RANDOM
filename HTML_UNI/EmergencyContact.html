@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emergency Contact | Autism Parent Education</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="first.css">
+    <style>
+        body {
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+        .emergency-box {
+            background-color: #ffefef;
+            color: #6b0000;
+            border: 1px solid #ffcccc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px auto;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        }
+        .bottom{
+            background-color: #2b6cb0;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            text-align:center; 
+            font-family: Garamond, serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand logo" href="ape.html">AUTISM PARENT EDUCATION</a>
+            <p id="clock" onload="gettime"></p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="ape.html">Home</a>
+                    <a class="nav-link" href="OnlineCounselingServices.html">Contact</a>
+                    <a class="nav-link" href="About_us.html">About</a>
+                    <a class="nav-link" href="resources.html">Resources</a>
+                    <a class="nav-link" href="success.html">Success stories</a>
+                    <a class="nav-link" href="SelfHelp.html">Tools and activities</a>
+                    <a class="nav-link active" aria-current="page" href="EmergencyContact.html">Emergency Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="emergency-box mt-4">
+        <h2>Emergency Contact</h2>
+        <p>If you are experiencing an emergency or your child is in danger, please call <strong>911</strong> or your local emergency services immediately.</p>
+        <p>For urgent, non-life-threatening concerns related to autism support, you can reach us directly.</p>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-sm my-4">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Contact Us</h2>
+                        <form onsubmit="return valid()">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" name="name"><span id="nameError" style="color: red;"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Your Email</label>
+                                <input type="email" class="form-control" id="email" name="email"><span id="emailError" style="color: red;"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message / Complaint / Suggestion</label>
+                                <textarea class="form-control" id="message" name="message" rows="6"></textarea><span id="massError" style="color: red;"></span>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <h3>Contact Us</h3>
+        <p>Email: ape.khalil.yaman.yousef.ryan@gmail.com | Phone: 079 6265 5557 - 079 3223 4332</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function valid() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+            var valid = true;
+            if (name == "" || name == null) {
+                document.getElementById("nameError").innerHTML = "Please enter your name";
+                valid = false;
+            } else {
+                document.getElementById("nameError").innerHTML = "";
+            }
+            if (email == "" || email == null) {
+                document.getElementById("emailError").innerHTML = "Please enter your email";
+                valid = false;
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+            if (message == "" || message == null) {
+                document.getElementById("massError").innerHTML = "Please enter your email";
+                valid = false;
+            } else {
+                document.getElementById("massError").innerHTML = "";
+            }
+            return valid;
+        }
+        var t = setInterval(gettime, 1000);
+        function gettime()
+        {
+            const d = new Date();
+            document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+        }
+    </script>
+</body>
+</html>
