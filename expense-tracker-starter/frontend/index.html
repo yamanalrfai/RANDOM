@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <header class="navbar navbar-dark bg-dark mb-4 shadow-sm">
+        <div class="container">
+            <h1 class="navbar-brand mb-0 fs-5">Expense Tracker</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <aside id="alert-container" class="alert alert-danger d-none" role="alert"></aside>
+
+        <section aria-label="Expense Summary" class="row mb-4 g-3">
+            <div class="col-md-4">
+                <article class="card bg-white h-100 shadow-sm border-0">
+                    <div class="card-body text-center d-flex flex-column justify-content-center py-4">
+                        <p class="text-muted small mb-2">Total</p>
+                        <p id="summary-total" class="h2 mb-0 fw-bold text-dark">0.00</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card bg-white h-100 shadow-sm border-0">
+                    <div class="card-body text-center d-flex flex-column justify-content-center py-4">
+                        <p class="text-muted small mb-2">Number of expenses</p>
+                        <p id="summary-count" class="h2 mb-0 fw-bold text-dark">0</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card bg-white h-100 shadow-sm border-0">
+                    <div class="card-body text-center d-flex flex-column justify-content-center py-4">
+                        <p class="text-muted small mb-2">Highest expense</p>
+                        <p id="summary-highest" class="h2 mb-0 fw-bold text-dark">0.00</p>
+                        <p id="summary-highest-title" class="text-muted small mt-1 mb-0">N/A</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section aria-labelledby="add-expense-heading" class="mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h2 id="add-expense-heading" class="card-title fs-5 mb-4 text-dark">Add expense</h2>
+                    <form id="add-form">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-3">
+                                <label for="add-title" class="form-label text-muted small mb-1">Title</label>
+                                <input type="text" id="add-title" class="form-control" placeholder="Lunch" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="add-amount" class="form-label text-muted small mb-1">Amount</label>
+                                <input type="number" id="add-amount" class="form-control" step="0.01" min="0.01" placeholder="4.50" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="add-category" class="form-label text-muted small mb-1">Category</label>
+                                <select id="add-category" class="form-select" required>
+                                    <option value="" disabled selected>Choose...</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="Bills">Bills</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="add-date" class="form-label text-muted small mb-1">Date</label>
+                                <input type="date" id="add-date" class="form-control" required>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary px-4">Add expense</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="expense-list-heading" class="mb-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 id="expense-list-heading" class="card-title fs-5 mb-0 text-dark">Expenses</h2>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center gap-2">
+                                <label for="filter-category" class="text-muted small mb-0 text-nowrap">Category</label>
+                                <select id="filter-category" class="form-select form-select-sm w-auto">
+                                    <option value="All">All</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="Bills">Bills</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <button id="btn-export" type="button" class="btn btn-sm btn-outline-secondary">Export CSV</button>
+                        </div>
+                    </div>
+                    
+                    <div id="loading-spinner" class="text-center my-4" aria-live="polite">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading expenses...</span>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle d-none" id="expense-table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col" class="border-0">Title</th>
+                                    <th scope="col" class="border-0">Amount</th>
+                                    <th scope="col" class="border-0">Category</th>
+                                    <th scope="col" class="border-0">Date</th>
+                                    <th scope="col" class="border-0 text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="editModalLabel">Edit Expense</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="edit-form">
+                    <div class="modal-body">
+                        <input type="hidden" id="edit-id">
+                        <div class="mb-3">
+                            <label for="edit-title" class="form-label">Title</label>
+                            <input type="text" id="edit-title" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-amount" class="form-label">Amount</label>
+                            <input type="number" id="edit-amount" class="form-control" step="0.01" min="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-category" class="form-label">Category</label>
+                            <select id="edit-category" class="form-select" required>
+                                <option value="Food">Food</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Bills">Bills</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-date" class="form-label">Date</label>
+                            <input type="date" id="edit-date" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+.summary-grid {
+    display: grid;
+    /* This creates a responsive grid that automatically wraps on smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.badge {
+    font-size: 0.85em;
+    padding: 0.4em 0.6em;
+}
+
+td .btn {
+    white-space: nowrap;
+}
